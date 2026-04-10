@@ -45,8 +45,26 @@ from app.graph.builder import build_graph
 
 graph = build_graph()
 
-response = graph.invoke({
-    "query": "what is the sick leave policy?"
-})
+# response = graph.invoke({
+#     "query": "what is the sick leave policy?"
+# })
 
-print(response["answer"])
+# print(response["answer"])
+
+state = {
+    "query": "",
+    'chat_history': []
+}
+
+while True: 
+    query = input("You: ")
+
+    if query.lower() == "exit":
+        break
+    
+    # print(state["chat_history"])
+    state["query"] = query
+
+    state = graph.invoke(state)
+
+    print("Bot: ", state["answer"])

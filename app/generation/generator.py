@@ -15,8 +15,11 @@ llm = ChatGroq(
 prompt = ChatPromptTemplate.from_template("""
 You are a helpful internal assistant.
 
-Answer ONLY from provided context
+Use the context and history to answer.
 If the answer is not present say i don't know.
+                                          
+History:
+{history}
                                           
 Context:
 {context}
@@ -35,15 +38,20 @@ def format_context(docs):
     return context
 
 
-def generate_answer(query, docs):
+def generate_answer(query, docs, history):
 
     context = format_context(docs)
+    
+    history_text = ""
+    for msg in history: 
+        history_text += f"{msg['role']}: {msg['content']}\n"
 
     chain = prompt | llm
 
     response = chain.invoke({
         "context": context, 
-        "question": query
+        "question": query, 
+        "history": history_text
     })
 
     return response.content

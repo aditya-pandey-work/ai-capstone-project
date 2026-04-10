@@ -2,7 +2,7 @@ from app.retrieval.retriever import retrieve_docs
 
 
 def retrieve_node(state):
-    query = state["query"]
+    query = state["modified_query"]
 
     docs = retrieve_docs(query)
 
