@@ -53,7 +53,8 @@ graph = build_graph()
 
 state = {
     "query": "",
-    'chat_history': []
+    'chat_history': [], 
+    "user_role": "hr"
 }
 
 while True: 

@@ -46,6 +46,7 @@ def rewrite_node(state):
         "history": history_text, 
         "question": query
     })
+    # print("prompt used: ", prompt)
     # print(response.content.strip())
     print("\n[DEBUG] Rewritten Query:", response.content.strip())
 

@@ -7,3 +7,4 @@ class GraphState(TypedDict):
     retrieve_query: List[Dict]
     answer: str 
     blocked: bool
+    user_role: str

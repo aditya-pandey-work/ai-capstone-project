@@ -6,13 +6,14 @@ client = PersistentClient(path="./chroma_db")
 
 collection = client.get_or_create_collection(name="company_docs")
 
-def retrieve_docs(query, top_k=5):
+def retrieve_docs(query, top_k=5, user_role="guest"):
 
     query_emb = model.encode(query).tolist()
 
     results = collection.query(
         query_embeddings=[query_emb], 
-        n_results=top_k
+        n_results=top_k, 
+        where={"access_role": user_role}
     )
 
     documents = []

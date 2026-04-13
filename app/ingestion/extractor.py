@@ -14,7 +14,7 @@ def extract_pdf(loc):
                     "text": text, 
                     "metadata": {
                         "page": i+1, 
-                        "access_role": ["admin", "employee"]
+                        "access_role": "employee"
                     }
                 })
     
